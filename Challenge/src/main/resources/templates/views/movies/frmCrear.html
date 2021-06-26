@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+		<div class="card bf-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body ">
+				<form th:action="@{/movies/save}" th:object="${peliculaoserie}"
+					method="post" enctype="multipart/form-data">
+
+					<input type="hidden" th:field="*{id}">
+
+					<div class="form-group row">
+						<label for="titulo" class="col-md-2">Titulo: </label> <input
+							type="text" th:field="*{titulo}"
+							class="form-control form-control-sm col-md-6" id="titulo"
+							placeholder="Nombre de la Pelicula/Serie"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}">
+						</small>
+					</div>
+					<div class="form-group row">
+						<label for="calificacion" class="col-md-2">Calificacion: </label>
+						<input type="text" th:field="*{calificacion}"
+							class="form-control form-control-sm col-md-6" id="calificacion"
+							placeholder="Calificacion"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('calificacion')}"
+							th:errors="*{calificacion}"> </small>
+					</div>
+
+					<div class="form-group row">
+						<label for="fechaCreacion" class="col-md-2">Fecha de
+							Creacion: </label> <input type="date" th:field="*{fechaCreacion}"
+							class="form-control form-control-sm col-md-6" id="fechaCreacion"
+							placeholder="Fecha de Creacion"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('fechaCreacion')}"
+							th:errors="*{fechaCreacion}"> </small>
+					</div>
+
+					<div class="form-group row">
+						<label for="imagen" class="col-md-2">Imagen: </label> <input
+							type="file" name="file"
+							class="form-control form-control-sm col-md-6" id="imagen">
+					</div>
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="Guardar" />
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

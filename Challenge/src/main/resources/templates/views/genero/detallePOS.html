@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+		<div class="card bf-light">
+			<div class="card-header bg-dark text-white text-center text-uppercase" th:text="${titulo}"></div>
+			<div class="card-body ">
+				
+				<img class="img-thumbnail rounded float-left"
+				th:src="@{'/Recursos/' + ${peliculaoserie.imagen}}"
+				th:alt="${peliculaoserie.imagen}"
+				style="max-width:25%;">
+				
+				<ul class="list-group">
+					<li class="list-group-item" th:text="'NOMBRE DEL PRODUCTO: ' + ${producto.nombreProducto}"></li>
+					<li class="list-group-item" th:text="'PRECIO DE COMPRA: ' + ${producto.precioCompra}"></li>
+					<li class="list-group-item" th:text="'STOCK: ' + ${producto.stock}"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

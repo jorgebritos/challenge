@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla/template :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+		<div class="container">
+
+			<a class="btn btn-primary btn-sm"
+				sec:authorize="hasRole('ROLE_ADMIN')"
+				th:href="@{/genero/create}" th:text="'Nueva Pelicula/Serie'"
+				title="Crear Nuevo Registro"> </a>
+
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Imagen</th>
+						<th scope="col">Titulo</th>
+						<th scope="col">Calificacion</th>
+						<th scope="col">Fecha de Creacion</th>
+						<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+						<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="gn:${genero}">
+					
+						
+						<td>
+							<img class="img-thumbnail rounded"
+							th:src="@{'/Recursos/' + ${gn.imagen}}" th:alt="${gn.imagen}"
+							style="max-width: 25%;">
+						</td>	
+						<td th:text="${gn.nombre}"></td>
+
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+							class="btn btn-success btn-sm"
+							th:href="@{/genero/edit/} + ${gn.id}"
+							th:text="'Editar'" title="Editar Registro">></a></td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+							class="btn btn-danger btn-sm"
+							th:href="@{/genero/delete/} + ${gn.id}"
+							th:text="'Eliminar'" title="Eliminar Registro"
+							onclick="return confirm('Esta seguro de eliminar este registro?')">
+						</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

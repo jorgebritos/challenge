@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+		<div class="card bf-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body ">
+				<form th:action="@{/characters/save}" th:object="${personaje}"
+					method="post" enctype="multipart/form-data">
+
+					<input type="hidden" th:field="*{id}">
+
+					<div class="form-group row">
+						<label for="nombre" class="col-md-2">Nombre: </label> <input
+							type="text" th:field="*{nombre}"
+							class="form-control form-control-sm col-md-6" id="nombre"
+							placeholder="Nombre Del Personaje"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+						</small>
+					</div>
+					<div class="form-group row">
+						<label for="historia" class="col-md-2">Historia: </label>
+						<textarea th:field="*{historia}"
+							class="form-control form-control-sm col-md-6" id="historia"
+							placeholder="Historia"></textarea>
+					</div>
+
+					<div class="form-group row">
+						<label for="edad" class="col-md-2">Edad: </label> <input
+							type="number" th:field="*{edad}"
+							class="form-control form-control-sm col-md-6" id="edad"
+							placeholder="Edad"> <small class="form-text text-danger"
+							th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}">
+						</small>
+					</div>
+
+					<div class="form-group row">
+						<label for="imagen" class="col-md-2">Imagen: </label> <input
+							type="file" name="file"
+							class="form-control form-control-sm col-md-6" id="imagen">
+					</div>
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="Guardar" />
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>
