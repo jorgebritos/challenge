@@ -1,1 +1,3 @@
-Lamento deba tener esta calidad el video, pero el máximo que acepta github es de 25MB, y aunque lo haga en calidad media y comprimido sigue pesando 25,7MB. Así que desde ya mis disculpas.
+Lamento deba tener esta calidad el video, pero el máximo que acepta github es de 25MB,
+y aunque lo haga en calidad media y comprimido sigue pesando 25,7MB.
+Así que desde ya mis disculpas.
